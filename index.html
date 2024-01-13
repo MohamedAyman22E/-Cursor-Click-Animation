@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="cursor">
+      <div class="click_animation">
+        <div class="shape circle big"></div>
+        <div class="shape circle small"></div>
+        <div class="shape triangle yellow"></div>
+        <div class="shape triangle green"></div>
+        <div class="shape disc yellow"></div>
+        <div class="shape disc purple"></div>
+      </div>
+    </div>
+    <h2 class="heading">click with mouse anywhere on the body</h2>
+    <h2 class="headingTitle">created by mohamed ayman</h2>
+    <script>
+      let cursorAnimation = document.querySelector(".cursor");
+      let cursors = document.querySelectorAll(".cursor");
+      document.addEventListener("click", e => {
+        let x = e.clientX;
+        let y = e.clientY;
+        cursorAnimation.style.top = y + "px";
+        cursorAnimation.style.left = x + "px";
+        let cursorClone = cursorAnimation.cloneNode("true");
+        document.querySelector("body").appendChild(cursorClone);
+        cursors.forEach(cursor => {
+          cursor.classList.add("active");
+          function removeCursor() {
+            cursor.classList.remove("active");
+          }
+          setTimeout(removeCursor, 1000);
+        });
+        setTimeout(() => {
+          cursorClone.remove();
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>
